@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <style>
+        body {
+            background-image: url('images/fon.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            background-color: #444;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav ul li {
+            margin: 0;
+            padding: 1rem;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+        }
+
+        .menu-icon {
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .nav-list {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            position: absolute;
+            top: 70px;
+            left: 0;
+            background-color: #444;
+        }
+
+        .nav-list.show-menu {
+            display: flex;
+        }
+
+        main {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            padding: 1rem;
+        }
+
+        section {
+            width: 300px;
+            margin: 1rem;
+            text-align: center;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+    <title>Fox Gaming Shop</title>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="images/ava.jpg" alt="Fox Gaming Shop Logo" class="logo">
+        </div>
+        <h1>Fox Gaming Shop</h1>
+        <nav>
+            <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+            <ul class="nav-list" id="navList">
+                <li><a href="index.html">Головна</a></li>
+                <li>
+                    <a href="#">Каталог<span class="sub-menu-icon"></span></a>
+                    <ul>
+                        <li><a href="#">Комп'ютери</a></li>
+                        <li><a href="#">Ноутбуки</a></li>
+                        <li><a href="#">Монітори</a></li>
+                    </ul>
+                </li>
+                <li><a href="survey.html">Опитування</a></li>
+                <li><a href="news.html">Новини</a></li>
+                <li><a href="components.html">Комплектуючі</a></li>
+                <li><a href="personal_cabinet.html">Особистий кабінет</a></li>
+                <li class="search-container">
+                    <input type="text" id="search" placeholder="Пошук" style="width: 150px; height: 30px;">
+                    <button type="button" style="height: 30px;">Пошук</button>
+                </li>
+                <div id="registrationModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close" onclick="closeModal('registrationModal')">&times;</span>
+                        <h3>Реєстрація</h3>
+                        <form onsubmit="redirectToHomePage(); return false;">
+                            <input type="text" name="username" placeholder="Ім'я користувача" required>
+                            <input type="email" name="email" placeholder="Електронна пошта" required>
+                            <input type="tel" name="phone" placeholder="Номер телефону" required>
+                            <input type="password" name="password" placeholder="Пароль" required>
+                            <button type="submit">Зареєструватись</button>
+                        </form>
+                    </div>
+                </div>
+                <button onclick="openModal('registrationModal')">Зареєструватись</button>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2 class="welcome-text">
+                <span class="highlight">Ласкаво просимо до Fox Gaming Shop!</span>
+            </h2>
+            <p class="welcome-text">
+                Магазин, де ви знайдете все необхідне для вашого ідеального геймінг-сетапу.
+                Fox Gaming Shop - це не просто магазин комп'ютерних компонентів, але і місце,
+                де ви можете знаходити найсучасніші технології та геймінгове обладнання.
+            </p>
+            <h3 class="welcome-text highlight">Наші пропозиції:</h3>
+            <ul class="welcome-text">
+                <li>Широкий вибір комплектуючих для ПК від провідних виробників.</li>
+                <li>Найновіші графічні відеокарти, щоб забезпечити найкращий геймплей.</li>
+                <li>Монітори з високою роздільною здатністю для неперевершеного візуального досвіду.</li>
+                <li>Периферійні пристрої, які допоможуть вам стати справжнім професіоналом.</li>
+            </ul>
+            <p class="welcome-text">
+                У нас ви знайдете все, що потрібно для створення потужної геймінгової системи та
+                насолоди ігровим процесом на повну катушку. Обирайте якість, обирайте Fox Gaming Shop!
+            </p>
+        </section>
+        <section style="margin-top: 350px;">
+            <div class="image-container">
+                <img class="helper-image" src="images/nova.jpg">
+                <div class="image-text">Безкоштовна доставка від Nova Пошта</div>
+            </div>
+        </section>
+        
+        <section id="feedback">
+            <h2 class="welcome-text">
+                <span class="highlight">Відгуки користувачів</span>
+            </h2>
+            <div class="feedback-item">
+                <h3>Артем</h3>
+                <p>Дуже задоволений покупками в Fox Gaming Shop. Великий вибір і швидка доставка!</p>
+            </div>
+            <div class="feedback-item">
+                <h3>Марія</h3>
+                <p>Гарний магазин, найкращі ціни на комплектуючі. Рекомендую!</p>
+            </div>
+            
+            <form id="feedback-form">
+                <label for="username">Ваше ім'я:</label>
+                <input type="text" id="username" name="username" required>
+
+                <label for="userFeedback">Ваш відгук:</label>
+                <textarea id="userFeedback" name="userFeedback" required></textarea>
+
+                <button type="button" onclick="submitFeedback()">Додати відгук</button>
+            </form>
+        </section>
+
+    </main>
+
+    <button id="scroll-to-top" onclick="scrollToTop()">Наверх</button>
+
+
+    <footer class="fixed-footer">
+        <p>&copy; 2023 Магазин комп'ютерів. Всі права захищені.</p>
+    </footer>
+</body>
+</html>
